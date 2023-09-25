@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Listado de Empleados</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body class="p-5 bg-success">
+	<div class="p-5 border border-5 border-success-subtle rounded bg-light">
+		<h1>Listado de Empleados</h1>
+		<hr>
+		<div class="text-center">
+			<a class="btn btn-outline-success my-3" th:href="@{/Empleado/Registro}"><i class="bi bi-database-add"></i> Registrar Nuevo</a>
+		</div>
+		<table class="table table-hover table-bordered table-striped">
+			<thead>
+				<tr>
+					<th>ID</th>
+					<th>Apellidos</th>
+					<th>Nombres</th>
+					<th>Edad</th>
+					<th>Sexo</th>
+					<th>Salario</th>
+					<th colspan="2"></th>
+				</tr>
+			</thead>
+			<tbody>
+				<th:block th:each="empleado: ${empleados}">
+					<tr>
+						<th th:text="${empleado.getIdEmpleado()}"></th>
+						<td th:text="${empleado.getApellidos()}"></td>
+						<td th:text="${empleado.getNombres()}"></td>
+						<td th:text="${empleado.getEdad}"></td>
+						<td th:text="${empleado.getSexo()}"></td>
+						<td th:text="${empleado.getSalario()}"></td>
+						<td class="text-center"><a class="btn btn-outline-primary" th:href="@{/Empleado/Actualizacion(id=${empleado.getIdEmpleado()})}"><i class="bi bi-pencil"></i> Editar</a></td>
+						<td class="text-center"><a class="btn btn-outline-danger" th:href="@{/Empleado/Eliminar(id=${empleado.getIdEmpleado()})}"><i class="bi bi-trash"></i> Eliminar</a></td>
+					</tr>
+				</th:block>
+			</tbody>
+			<tfooter>
+				<tr class="text-center">
+					<th colspan="8" th:text="'TOTAL DE REGISTROS: ' + ${empleados.size()}"></th>
+				</tr>
+			</tfooter>
+		</table>
+	</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>

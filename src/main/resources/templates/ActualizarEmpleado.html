@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Actualizar Empleado</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+</head>
+<body class="bg-success py-3">
+	<div class="p-5 border border-5 border-success-subtle rounded bg-light m-auto col-sm-12 col-md-9 col-lg-6">
+		<h1 th:text="'Editar Empleado Nro. ' + ${empleado.getIdEmpleado}"></h1>
+		<hr>
+		<form action="#" th:action="@{/Empleado/Actualizar}" th:object="${empleado}" method="post">
+			<input type="hidden" th:field="*{IdEmpleado}">
+			<div class="row mb-3">
+				<div class="col-6 mb-3">
+					<label class="form-label" for="Nombres">Nombres: </label>
+					<input type="text" class="form-control" id="Nombres" th:field="*{Nombres}" autocomplete="off" required placeholder="Ingresar Nombres...">
+				</div>
+				<div class="col-6 mb-3">
+					<label class="form-label" for="Apellidos">Apellidos: </label>
+					<input type="text" class="form-control" id="Apellidos" th:field="*{Apellidos}" autocomplete="off" required placeholder="Ingresar Apellidos...">
+				</div>
+			</div>
+			<div class="row mb-3">
+				<div class="col-6 mb-3">
+					<label class="form-label" for="Edad">Edad: </label>
+					<input type="number" class="form-control" id="Edad" th:field="*{Edad}" autocomplete="off" min="18">
+				</div>
+				<div class="col-6 mb-3">
+					<label class="form-label" for="Sexo">Sexo: </label>
+					<select class="form-select" id="Sexo" th:field="*{Sexo}">
+						<option value='M' th:selected="${empleado.getSexo() == 'M'}">Masculino</option>
+						<option value='F' th:selected="${empleado.getSexo() == 'F'}">Femenino</option>
+					</select>
+				</div>
+			</div>
+			<div class="row mb-3">
+				<div class="col-6 mb-3">
+					<label class="form-label" id="Salario">Salario: </label>
+					<input type="number" step="0.01" class="form-control" id="Salario" th:field="*{Salario}" min="1500" max="2500">
+				</div>
+			</div>
+			<div class="d-flex justify-content-around">
+				<button type="submit" class="btn btn-primary"><i class="bi bi-pencil"></i> Editar</button>
+				<a class="btn btn-secondary" th:href="@{/Empleado/Listado}"><i class="bi bi-door-open"></i> Regresar</a>
+			</div>
+		</form>
+	</div>
+</body>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+</html>
